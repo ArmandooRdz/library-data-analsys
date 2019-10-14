@@ -1,10 +1,7 @@
 package com.armandordz.estructura;
 
 import com.armandordz.estadisticas.IEstadisticas;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-
 
 /**
  * Representa a una tabla. Posee:
