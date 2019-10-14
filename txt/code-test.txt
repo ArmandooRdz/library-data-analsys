@@ -1,18 +1,5 @@
-package com.armandordz;
 
-import com.armandordz.estructura.*;
-import com.armandordz.lectura.Archivo;
-import com.armandordz.parseo.ParseoDeStrings;
-
-public class App {
-
-    public static void main(String[] args ) throws Exception {
-        instanciasDePrueba();
-    }
-
-    public static void instanciasDePrueba() throws Exception {
-
-        Archivo file = new Archivo("/media/armando_rdz/Archivos/UPV/VII Cuatrimestre/POO/exam-u1/csv/prueba.csv");
+Archivo file = new Archivo("/media/armando_rdz/Archivos/UPV/VII Cuatrimestre/POO/exam-u1/csv/prueba.csv");
         ParseoDeStrings parse = new ParseoDeStrings(file);
 
         DataFrame dataFrame = parse.getDataFrame();
@@ -46,20 +33,6 @@ public class App {
         System.out.println("\n\n>Metodo Dtypes(int[] indexCols)");
         int[] indiceColumnas = {2,4};
         for (int i = 0; i < dataFrame.Dtypes(indiceColumnas).size(); i++){
-            System.out.println(dataFrame.Dtypes(indiceColumnas).get(i));
+            System.out.println();
         }
         System.out.println();
-
-        System.out.println(">Metodo Describe(int[] indexCols)");
-        int[] indiceColumnasDescribir = {2,4};
-        dataFrame.describe(indiceColumnasDescribir);
-
-
-
-    }
-
-
-
-
-
-}

@@ -14,7 +14,7 @@ public interface FuncionalidadDF {
 
     void describe(int[] cols); // Solo para datos numericos
 
-    void describe(String columnName);
+
 
     void Sort(String columnName);
 

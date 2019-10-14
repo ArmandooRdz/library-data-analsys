@@ -92,15 +92,15 @@ public class DataFrame implements FuncionalidadDF {
 
     public ArrayList<Cell> recorrerColumna(String nomColumna){
         //TODO: Regregar todas las Cell de la columna [nomColumna].
-        nomColumna = nomColumna.trim().toUpperCase();
+        nomColumna = nomColumna.trim();
         int columnIndex = -1;
         ArrayList<Cell> columna = new ArrayList<>();
         for(int i = 0; i < columnsNames.size(); i++)
-            if(columnsNames.get(i) == nomColumna.trim().toUpperCase())
+            if(columnsNames.get(i).equals(nomColumna.trim()))
                 columnIndex = i;
         if(columnIndex == -1){
             System.out.println("ERROR: No se encontró la columna de nombre " + nomColumna + " y por tanto el\n" +
-                    "método recorrerColumna() retorno null.");
+                    "método recorrerColumna() retornó null.");
             return null;
         }
         for (int i = 0; i < rows.size(); i++){
@@ -110,6 +110,10 @@ public class DataFrame implements FuncionalidadDF {
     }
 
     public void printDataSet(){
+        for (int i = 0; i < columnsNames.size(); i++){
+            System.out.print(columnsNames.get(i) + "         ");
+        }
+        System.out.println();
         for (int f = 0; f < rows.size(); f++){
             for (int c = 0; c < rows.get(f).getCellsNumber(); c++){
                 if(rows.get(f).getCell(c).getValue() == null){
@@ -197,6 +201,7 @@ public class DataFrame implements FuncionalidadDF {
     @Override
     public void describe(int[] cols) {
 
+
         float standardDeviation = 0.0f;
         float tendenciaC = 0.0f;
         for (int i = 0; i < cols.length; i++) {
@@ -205,26 +210,26 @@ public class DataFrame implements FuncionalidadDF {
                     !(rows.get(0).getCell(cols[i]).getValue() instanceof Float)) {
                 break;
             }
-            if (cols[i] > rows.get(0).getCellsNumber() || cols[i] < 0)
+            if (cols[i] >= rows.get(0).getCellsNumber() || cols[i] < 0)
                 break;
 
             for (int f = 0; f < rows.size(); f++) {
                 celdas.add(rows.get(f).getCell(cols[i]));
             }
+
             // impresiones
             System.out.println(" > Columna No." + cols[i]);
             System.out.println("Count              " + IEstadisticas.Count.calculate((celdas)));
             System.out.println("Mean               " + IEstadisticas.Mean.calculate(celdas));
-            System.out.println("Std         " + IEstadisticas.StandardDeviation.calculate(celdas));
-
+            System.out.println("Std                " + IEstadisticas.StandardDeviation.calculate(celdas));
+            System.out.println("Min                " + IEstadisticas.Min.calculate(celdas));
+            System.out.println("Max                " + IEstadisticas.Max.calculate(celdas));
+            System.out.println("Name: " + columnsNames.get(i) + "  DataType: " + celdas.get(0).getValue().getClass().getSimpleName());
         }
 
     }
 
-    @Override
-    public void describe(String columnName) {
-        ArrayList<Cell> celdas = recorrerColumna(columnName);
-    }
+
 
     @Override
     public void Sort(String columnName) {

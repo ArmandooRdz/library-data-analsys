@@ -117,7 +117,7 @@ public class Archivo {
         return columns;
     }
 
-
+    public ArrayList<String> getCells(){return cells;}
 
 
 
